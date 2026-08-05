@@ -1,0 +1,9 @@
+a=int(input("Enter a number: "))
+s=0
+for i in str(a):
+    s += int(i)**3
+if s==a:
+    print("Armstrong number")   
+
+else:
+    print("Not an Armstrong number")            
