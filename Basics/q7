@@ -1,0 +1,32 @@
+clc;
+clear;
+close all;
+
+% Enter a square matrix
+A = input('Enter a square matrix A: ');
+
+% Check whether matrix is square
+[m, n] = size(A);
+
+if m ~= n
+    error('Matrix must be square.');
+end
+
+% Check whether matrix is symmetric
+if norm(A - A', 'fro') > 1e-10
+    fprintf('\nThe matrix is NOT symmetric.\n');
+    fprintf('Therefore, it is not positive definite.\n');
+else
+    % Find eigenvalues
+    eigenvalues = eig(A);
+
+    fprintf('\nEigenvalues of A are:\n');
+    disp(eigenvalues);
+
+    % Check positive definiteness
+    if all(eigenvalues > 1e-10)
+        fprintf('The matrix is POSITIVE DEFINITE.\n');
+    else
+        fprintf('The matrix is NOT POSITIVE DEFINITE.\n');
+    end
+end
