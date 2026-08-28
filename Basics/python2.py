@@ -1,11 +1,8 @@
-#frequency of elements in a list
-def frequency(lst):
-    freq={}
-    for i in lst:
-        if i in freq:
-            freq[i]+=1
-        else:
-            freq[i]=1
-    return freq
- 
-    
+a = list(map(int, input("Enter the values: ").split()))
+freq={}
+for i in a:
+    freq[i]=freq.get(i,0)+1
+
+for i,count in freq.items():
+    print(f"{i} : {count}")
+print(a)
