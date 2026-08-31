@@ -1,0 +1,194 @@
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+HTML = """
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        }
+
+        .card {
+            width: 90%;
+            max-width: 500px;
+            padding: 40px 25px;
+            text-align: center;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            z-index: 10;
+        }
+
+        .heart {
+            font-size: 70px;
+            animation: beat 1s infinite;
+        }
+
+        @keyframes beat {
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        h1 {
+            color: #e91e63;
+            font-size: 35px;
+        }
+
+        h2 {
+            color: #d81b60;
+        }
+
+        p {
+            color: #555;
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        button {
+            border: none;
+            padding: 14px 30px;
+            margin: 10px;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #yes {
+            background: #e91e63;
+            color: white;
+        }
+
+        #no {
+            background: #ddd;
+        }
+
+        #result {
+            display: none;
+        }
+
+        .falling-heart {
+            position: fixed;
+            top: -50px;
+            font-size: 25px;
+            z-index: 1;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="heart">❤️</div>
+
+    <h1>Hey, My Love...</h1>
+
+    <p>
+        You make my ordinary days special.<br>
+        Your smile makes me happy.<br>
+        You are the reason behind so many of my smiles.
+    </p>
+
+    <h2>Will You Be Mine Forever? 💍</h2>
+
+    <div id="buttons">
+        <button id="yes" onclick="yesClicked()">YES ❤️</button>
+        <button id="no" onclick="moveNo()">NO 😜</button>
+    </div>
+
+    <div id="result">
+        <h1>🎉 YOU SAID YES! 🎉</h1>
+
+        <p>
+            I knew it! 🥰❤️
+            <br><br>
+            You are my happiness,<br>
+            my favorite person,<br>
+            and my forever. 💕
+        </p>
+
+        <h2>Forever & Always ❤️</h2>
+    </div>
+
+</div>
+
+<script>
+
+function yesClicked() {
+    document.getElementById("buttons").style.display = "none";
+    document.getElementById("result").style.display = "block";
+
+    for (let i = 0; i < 40; i++) {
+        setTimeout(createHeart, i * 80);
+    }
+}
+
+function moveNo() {
+    let button = document.getElementById("no");
+
+    button.style.position = "fixed";
+
+    let x = Math.random() * (window.innerWidth - 120);
+    let y = Math.random() * (window.innerHeight - 60);
+
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+}
+
+function createHeart() {
+    let heart = document.createElement("div");
+
+    heart.className = "falling-heart";
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration =
+        (2 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function() {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 500);
+
+</script>
+
+</body>
+</html>
+"""
+
+@app.route("/")
+def home():
+    return render_template_string(HTML)
+
+if __name__ == "__main__":
+    app.run(debug=True)
