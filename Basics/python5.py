@@ -1,4 +1,6 @@
 import qrcode
-data='https://www.istockphoto.com/photos/couple-love-hearts'
+a=input("Give a link to generate to Qr code: ")
+data=a
+
 qr=qrcode.make(data)
 qr.show()
