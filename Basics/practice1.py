@@ -26,7 +26,7 @@ def display():
 
 # main program
 while True:
-    print("\n1.Enqueue  2.Dequeue  3.Display  4.Exit")
+    print("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit")
     ch = int(input("Enter choice: "))
 
     if ch == 1:
