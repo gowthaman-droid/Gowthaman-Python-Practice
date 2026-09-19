@@ -3,7 +3,7 @@ while True:
     try:
         command = input().strip().split()
         if not command:
-            continuegit 
+            continue
         if command[0] == "ENQUEUE":
             name = command[1]
             tickets = int(command[2])
