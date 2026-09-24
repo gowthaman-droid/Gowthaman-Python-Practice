@@ -1,0 +1,16 @@
+gowtham: hi
+Bot: Hey!
+gowtham: hi
+Bot: Hello 
+gowtham: hi
+Bot: Hi there!
+gowtham: how are you
+Bot: All good 
+gowtham: im going to study 
+Bot: Focus! Exams coming 
+gowtham: ok
+Bot: I don’t understand 
+gowtham: bye
+Bot: I don’t understand 
+gowtham: exit
+Bot: Bye
