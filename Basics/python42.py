@@ -1,47 +1,26 @@
-limit =
-expenses = []
+limit = float(input("Enter monthly data limit (GB): "))
 
-n = int(input("How many expenses? "))
+total_used = 0
 
-for i in range(n):
-    print("\nExpense", i + 1)
+days = int(input("Enter number of days: "))
 
-    name = input("Enter expense: ")
-    category = input("Enter category: ")
-    amount = float(input("Enter amount: "))
+for i in range(1, days + 1):
+    usage = float(input(f"Enter data used on Day {i} (GB): "))
+    total_used += usage
 
-    expense = {
-        "name": name,
-        "category": category,
-        "amount": amount
-    }
+remaining = limit - total_used
+percentage = (total_used / limit) * 100
 
-    expenses.append(expense)
+print("\n--- Data Usage Report ---")
+print("Total Used:", total_used, "GB")
+print("Remaining:", max(remaining, 0), "GB")
+print("Usage:", round(percentage, 2), "%")
 
-print("\n===== EXPENSE SUMMARY =====")
-
-total = 0
-highest = expenses[0]
-
-for expense in expenses:
-    print(
-        expense["name"],
-        " | ",
-        expense["category"],
-        " | ₹",
-        expense["amount"]
-    )
-
-    total = total + expense["amount"]
-
-    if expense["amount"] > highest["amount"]:
-        highest = expense
-
-print("\nTotal spent: ₹", total)
-
-print(
-    "Highest expense:",
-    highest["name"],
-    "- ₹",
-    highest["amount"]
-)
+if percentage >= 100:
+    print("Status: DATA LIMIT EXCEEDED!")
+elif percentage > 90:
+    print("Status: Critical")
+elif percentage >= 75:
+    print("Status: Warning")
+else:
+    print("Status: Normal")
